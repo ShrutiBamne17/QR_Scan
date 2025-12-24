@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Certificate | Ctrl M Support</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #006064;
+            --secondary: #00acc1;
+            --bg-gradient: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            --card-bg: #ffffff;
+            --text-main: #2c3e50;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- MODERN HEADER --- */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-area img { height: 100px; width: auto; transition: 0.3s; }
+
+        .header-title { text-align: right; }
+        .header-title h1 { margin: 0; font-size: 1.2rem; color: var(--primary); text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- MAIN LAYOUT --- */
+        .container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .main-card {
+            background: var(--card-bg);
+            width: 100%;
+            max-width: 1100px;
+            border-radius: 30px;
+            display: flex;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+
+        /* Side Panel */
+        .side-panel {
+            width: 40%;
+            background: var(--primary);
+            padding: 60px 40px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .side-panel::after {
+            content: "";
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+        }
+
+        .product-img {
+            width: 100%;
+            max-width: 320px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            margin-bottom: 30px;
+            border: 5px solid rgba(255,255,255,0.1);
+        }
+
+        .badge {
+            background: var(--secondary);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Details Panel */
+        .details-panel {
+            width: 60%;
+            padding: 60px;
+            background: #fff;
+        }
+
+        .details-panel h2 {
+            margin: 0 0 40px 0;
+            font-size: 28px;
+            color: var(--primary);
+            border-left: 5px solid var(--secondary);
+            padding-left: 15px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .info-item { margin-bottom: 10px; }
+        .info-item label {
+            display: block;
+            font-size: 11px;
+            font-weight: 700;
+            color: #999;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+        .info-item div {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .info-item i { color: var(--secondary); font-size: 14px; }
+
+        /* Button */
+        .action-area { margin-top: 50px; }
+        .btn-primary {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 22px;
+            border-radius: 15px;
+            font-size: 18px;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.4s;
+            box-shadow: 0 10px 20px rgba(0,172,193,0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,172,193,0.5);
+        }
+
+        /* MOBILE */
+        @media (max-width: 900px) {
+            header { padding: 15px 5%; }
+            .logo-area img { height: 70px; }
+            .main-card { flex-direction: column; border-radius: 0; }
+            .side-panel, .details-panel { width: 100%; box-sizing: border-box; }
+            .info-grid { grid-template-columns: 1fr; gap: 20px; }
+            .details-panel { padding: 40px 30px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo-area"><img src="logo.png" alt="Logo"></div>
+    <div class="header-title">
+        <h1>Ctrl M Support</h1>
+        <small style="color: #888;">Digital Service Portal</small>
+    </div>
+</header>
+
+<div class="container">
+    <div class="main-card">
+        <div class="side-panel">
+            <img src="Waw Unit.png" class="product-img" alt="Unit">
+            <p style="font-size: 13px; opacity: 0.8;">Scan ID: #CTRL-2025-99</p>
+        </div>
+
+        <div class="details-panel">
+            <h2>Product Information</h2>
+            
+            <div class="info-grid">
+                <div class="info-item">
+                    <label>Install Date</label>
+                    <div><i class="fa-solid fa-calendar-check"></i> 18th November 2025</div>
+                </div>
+                <div class="info-item">
+                    <label>Unit Model</label>
+                    <div><i class="fa-solid fa-cube"></i> Rotating FSU</div>
+                </div>
+                <div class="info-item" style="grid-column: span 2;">
+                    <label>Store Name</label>
+                    <div><i class="fa-solid fa-shop"></i> Shree Krishna Super Bazar</div>
+                </div>
+                <div class="info-item" style="grid-column: span 2;">
+                    <label>Store Address</label>
+                    <div style="font-size: 14px;"><i class="fa-solid fa-location-dot"></i> 8, Panchtara Society, Manish Nagr, Nagpur</div>
+                </div>
+                <div class="info-item">
+                    <label>Point of Contact</label>
+                    <div><i class="fa-solid fa-user"></i> Manish Nagpur</div>
+                </div>
+                <div class="info-item">
+                    <label>Mobile Number</label>
+                    <div><i class="fa-solid fa-phone"></i> +91 8446059339</div>
+                </div>
+            </div>
+
+            <div class="action-area">
+                <button class="btn-primary" onclick="goToForm()">
+                    Raise Service Request <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const productData = {
+        date: "18th November 2025",
+        store: "Shree Krishna Super Bazar",
+        contact: "Manish Nagpur",
+        mobile: "8446059339",
+        address: "8, Panchtara Society, Manish Nagr, Nagpur",
+        unit: "Rotating FSU"
+    };
+
+    function goToForm() {
+        const params = new URLSearchParams(productData).toString();
+        // Redirecting with the crucial "?" separator
+        window.location.href = "qr.html?" + params;
+    }
+</script>
+
+</body>
+</html>

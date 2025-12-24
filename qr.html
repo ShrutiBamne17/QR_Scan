@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Service Request Portal | Ctrl M Support</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    
+    <style>
+        :root {
+            --primary: #006064; /* Deep Teal */
+            --secondary: #00acc1; /* Vibrant Cyan */
+            --bg-gradient: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            --glass-bg: rgba(255, 255, 255, 0.95);
+            --text-main: #2c3e50;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            min-height: 100vh;
+            color: var(--text-main);
+        }
+
+        /* --- STICKY HEADER --- */
+        header {
+            background: var(--glass-bg);
+            padding: 15px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-area img {
+            height: 90px; /* Matched to Product01.html */
+            width: auto;
+        }
+
+        .header-status {
+            text-align: right;
+            color: var(--primary);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        /* --- FORM CONTAINER --- */
+        .container {
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .form-card {
+            background: #ffffff;
+            width: 100%;
+            max-width: 1000px; /* Increased size */
+            border-radius: 30px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+            padding: 50px;
+            box-sizing: border-box;
+        }
+
+        h2 {
+            color: var(--primary);
+            margin: 0 0 30px 0;
+            font-size: 28px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-tag {
+            background: #f0f7f7;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 13px;
+            margin: 35px 0 20px 0;
+            display: block;
+            border-left: 5px solid var(--secondary);
+        }
+
+        /* --- GRID SYSTEM --- */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .full { grid-column: span 2; }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .input-group label {
+            font-size: 12px;
+            font-weight: 700;
+            color: #888;
+            text-transform: uppercase;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            left: 15px;
+            color: var(--secondary);
+            font-size: 16px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 15px 15px 15px 45px; /* Space for icon */
+            border: 2px solid #edf2f7;
+            border-radius: 15px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 15px;
+            background: #f8fafc;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        textarea { padding-left: 15px; } /* No icon inside textarea */
+
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--secondary);
+            background: #fff;
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(0, 172, 193, 0.1);
+        }
+
+        /* Readonly Styling */
+        .readonly-field {
+            background: #f1f5f9;
+            color: #64748b;
+            border-style: dashed;
+            cursor: not-allowed;
+        }
+
+        /* --- SUBMIT BUTTON --- */
+        .submit-area {
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .submit-btn {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            width: 100%;
+            max-width: 450px;
+            padding: 22px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.4s;
+            box-shadow: 0 10px 25px rgba(0, 172, 193, 0.3);
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 172, 193, 0.5);
+        }
+
+        /* --- MOBILE RESPONSIVE --- */
+        @media (max-width: 768px) {
+            header { padding: 15px 5%; }
+            .logo-area img { height: 60px; }
+            .form-card { padding: 30px 20px; border-radius: 0; }
+            .form-grid { grid-template-columns: 1fr; gap: 15px; }
+            .full { grid-column: span 1; }
+            h2 { font-size: 22px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo-area"><img src="logo.png" alt="Company Logo"></div>
+    <div class="header-status">
+        <i class="fa-solid fa-circle-check" style="color: #4cd137;"></i> Digital Support
+    </div>
+</header>
+
+<div class="container">
+    <div class="form-card">
+        <h2><i class="fa-solid fa-headset"></i> Raise Service Ticket</h2>
+
+        <form id="service-form">
+            <span class="section-tag">Step 1: System Identification</span>
+            <div class="form-grid">
+                <div class="input-group">
+                    <label>Installation Date</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-calendar"></i>
+                        <input type="text" name="date" id="f-date" class="readonly-field" readonly>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label>Asset Model</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-microchip"></i>
+                        <input type="text" name="unit" id="f-unit" class="readonly-field" readonly>
+                    </div>
+                </div>
+                <div class="input-group full">
+                    <label>Registered Store</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-store"></i>
+                        <input type="text" name="store" id="f-store" class="readonly-field" readonly>
+                    </div>
+                </div>
+            </div>
+
+            <span class="section-tag">Step 2: Request Details</span>
+            <div class="form-grid">
+                <div class="input-group full">
+                    <label>Issue Category</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        <select name="issue_category" required>
+                            <option value="" disabled selected>Select nature of complaint...</option>
+                            <option value="Visual Change Request">Visual Change Request</option>
+                            <option value="LED Issue">Light Not Working</option>
+                            <option value="Other">Other Issues</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="input-group full">
+                    <label>Problem Description</label>
+                    <textarea name="description" rows="5" placeholder="Please provide specific details about the issue..." required></textarea>
+                </div>
+
+                <div class="input-group">
+                    <label>Requester Email</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-user-pen"></i>
+                        <input type="text" name="user_name" placeholder="" required>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Evidence (Image)</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-camera"></i>
+                        <input type="file" name="unit_image" accept="image/*" style="padding-top: 11px;">
+                        <small style="font-size: 10px; margin-top: 5px; color: #888;">Max 5MB.</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="submit-area">
+                <button type="submit" class="submit-btn">
+                    Submit <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    // 1. Initialize EmailJS
+    (function() {
+        emailjs.init("YOUR_PUBLIC_KEY");
+    })();
+
+    // 2. Parse URL Data
+    const params = new URLSearchParams(window.location.search);
+    document.getElementById('f-date').value = params.get('date') || '';
+    document.getElementById('f-unit').value = params.get('unit') || '';
+    document.getElementById('f-store').value = params.get('store') || '';
+
+    // 3. Form Submission
+    document.getElementById('service-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        const btn = document.querySelector('.submit-btn');
+        btn.innerHTML = 'Sending... <i class="fa-solid fa-spinner fa-spin"></i>';
+        btn.disabled = true;
+
+        emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this)
+            .then(() => {
+                alert('Success! Your service request has been logged.');
+                window.location.href = "Product01.html";
+            }, (error) => {
+                alert('Oops! Something went wrong. Please check your connection.');
+                btn.innerHTML = 'Submit to Technicians <i class="fa-solid fa-paper-plane"></i>';
+                btn.disabled = false;
+            });
+    });
+</script>
+
+</body>
+</html>
