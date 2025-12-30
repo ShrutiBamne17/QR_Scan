@@ -1,0 +1,216 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Certificate | Ctrl M Support</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* MATCHED TO YOUR COLOR SCHEME */
+        :root {
+            --primary: #6e379b; 
+            --secondary: #bc67ee; 
+            --bg-gradient: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+            --card-bg: #ffffff;
+            --text-main: #2c3e50;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-area img { height: 80px; width: auto; }
+        .header-title { text-align: right; }
+        .header-title h1 { margin: 0; font-size: 1.1rem; color: var(--primary); text-transform: uppercase; letter-spacing: 1px; }
+
+        .container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .main-card {
+            background: var(--card-bg);
+            width: 100%;
+            max-width: 1100px;
+            border-radius: 30px;
+            display: flex;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+
+        /* Side Panel with Image */
+        .side-panel {
+            width: 40%;
+            background: var(--primary);
+            padding: 60px 40px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .product-img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            margin-bottom: 30px;
+            border: 5px solid rgba(255,255,255,0.1);
+        }
+
+        /* Certificate Details */
+        .details-panel {
+            width: 60%;
+            padding: 60px;
+            background: #fff;
+        }
+
+        .details-panel h2 {
+            margin: 0 0 40px 0;
+            font-size: 28px;
+            color: var(--primary);
+            border-left: 5px solid var(--secondary);
+            padding-left: 15px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .info-item label {
+            display: block;
+            font-size: 11px;
+            font-weight: 700;
+            color: #999;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .info-item div {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-item i { color: var(--secondary); font-size: 14px; }
+
+        .btn-primary {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            text-decoration: none;
+            padding: 22px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
+            text-transform: uppercase;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-top: 50px;
+            transition: 0.4s;
+            box-shadow: 0 10px 20px rgba(0,172,193,0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,172,193,0.5);
+        }
+
+        @media (max-width: 900px) {
+            .main-card { flex-direction: column; }
+            .side-panel, .details-panel { width: 100%; box-sizing: border-box; }
+            .info-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo-area">
+        <img src="{% static 'logo.png' %}" alt="Logo">
+    </div>
+    <div class="header-title">
+        <h1>Ctrl M Support</h1>
+        <small style="color: #888;">Registration Confirmed</small>
+    </div>
+</header>
+
+<div class="container">
+    <div class="main-card"> 
+        <div class="details-panel">
+            <h2>Installation Certificate</h2>
+            
+            <div class="info-grid">
+                <div class="info-item">
+                    <label>Install Date</label>
+                    <div><i class="fa-solid fa-calendar-check"></i> {{ installation_date }}</div>
+                </div>
+
+                <div class="info-item" style="grid-column: span 2;">
+                    <label>Store Name</label>
+                    <div><i class="fa-solid fa-shop"></i> {{ store_name }}</div>
+                </div>
+                <div class="info-item" style="grid-column: span 2;">
+                    <label>Store Address</label>
+                    <div style="font-size: 14px;"><i class="fa-solid fa-location-dot"></i> {{ address }}</div>
+                </div>
+                <div class="info-item">
+                    <label>Point of Contact</label>
+                    <div><i class="fa-solid fa-user"></i> {{ contact_person }}</div>
+                </div>
+                <div class="info-item">
+                    <label>Mobile Number</label>
+                    <div><i class="fa-solid fa-phone"></i> {{ mobile_no }}</div>
+                </div>
+                <div class="info-item">
+                    <label>Unit Model</label>
+                    <div><i class="fa-solid fa-cube"></i> {{ unit_type }}</div>
+                </div>
+            </div>
+
+            <a href="{% url 'raise_ticket' %}" class="btn-primary">
+                Raise Service Request <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+
+        <div class="side-panel">
+            <img src="{% static 'Waw Unit.png' %}" class="product-img" alt="Unit">
+            <p style="margin-top: 15px; font-size: 13px; opacity: 0.8;">Asset ID: #CTRL-{{ product_id }}</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
